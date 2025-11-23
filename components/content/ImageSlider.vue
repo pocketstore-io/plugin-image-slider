@@ -3,7 +3,7 @@
     <div class="relative w-full aspect-16/9 mx-auto rounded-xl">
       <!-- Images -->
       <div>
-        <img :src="images[current]" class="w-full h-full object-cover"/>
+        <img :src="props.images[current].media" class="w-full h-full object-cover"/>
       </div>
 
       <!-- Arrows -->
@@ -24,7 +24,7 @@
       <!-- Dots -->
       <div class="absolute bottom-4 w-full flex justify-center gap-3">
       <span
-          v-for="(img, index) in images"
+          v-for="(_, index) in props.images"
           :key="index"
           class="w-3 h-3 rounded-full cursor-pointer transition"
           :class="index === current ? 'bg-white' : 'bg-gray-400'"
@@ -39,20 +39,18 @@
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome"
 import {ref} from 'vue'
 
-const images = [
-  'https://image.tmdb.org/t/p/original/6U17IFhOo7omnuD2mrFQIaHx82B.jpg',
-  'https://image.tmdb.org/t/p/original/ah3m5E28pE4vsFnNvoTTdVxxT3B.jpg',
-  'https://image.tmdb.org/t/p/original/ebg8TF2vYaSVNVLv8WO8omebrjw.jpg'
-]
+const props = defineProps({
+  images: {type: Array, required: true},
+});
 
 const current = ref(0)
 
 const next = () => {
-  current.value = (current.value + 1) % images.length
+  current.value = (current.value + 1) % props.images.length
 }
 
 const prev = () => {
-  current.value = (current.value - 1 + images.length) % images.length
+  current.value = (current.value - 1 + props.images.length) % props.images.length
 }
 
 const goTo = (index) => {
