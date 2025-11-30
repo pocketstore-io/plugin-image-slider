@@ -3,7 +3,7 @@
     <div class="relative w-full aspect-16/9 mx-auto rounded-xl">
       <!-- Images -->
       <div>
-        <img :src="props.images[current].media" class="w-full h-full object-cover"/>
+        <img :src="getMediaUrl(props.images[current],'media')" class="w-full h-full object-cover"/>
       </div>
 
       <!-- Arrows -->
@@ -38,6 +38,7 @@
 <script setup lang="ts">
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome"
 import {ref} from 'vue'
+import {getMediaUrl} from '~/utils/pocketbase'
 
 const props = defineProps({
   images: {type: Array, required: true},
