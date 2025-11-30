@@ -3,7 +3,7 @@
     <div class="relative w-full aspect-16/9 mx-auto rounded-xl">
       <!-- Images -->
       <div>
-        <img :src="getMediaUrl(props.images[current],'media')" class="w-full h-full object-cover"/>
+        <img :src="getMediaUrl(props.images[current],'media')" alt="slider image" class="w-full h-full object-cover"/>
       </div>
 
       <!-- Arrows -->
